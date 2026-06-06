@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous Research Agent Console</title>
+    <meta name="description" content="Interactive dashboard for the Autonomous Research Agent (Assignment 6) showing real-time logs, cognitive state, and memory persistence.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Modern CSS Custom Properties (Design System) */
+        :root {
+            --bg-base: #070a13;
+            --bg-surface: rgba(15, 22, 41, 0.7);
+            --bg-card: rgba(30, 41, 59, 0.4);
+            --bg-terminal: #05070f;
+            --border-color: rgba(255, 255, 255, 0.08);
+            
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+            
+            --color-cyan: #06b6d4;
+            --color-indigo: #6366f1;
+            --color-rose: #f43f5e;
+            --color-emerald: #10b981;
+            --color-amber: #f59e0b;
+            --color-purple: #a855f7;
+            
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            --font-mono: 'Fira Code', 'Courier New', Courier, monospace;
+        }
+
+        /* Basic Reset and Layout */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.05) 0%, transparent 40%);
+        }
+
+        /* Header Style */
+        header {
+            background: var(--bg-surface);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 1.25rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-glow {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 0.5rem;
+            background: linear-gradient(135deg, var(--color-cyan), var(--color-indigo));
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .header-title-container h1 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ffffff, #93c5fd, #c084fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header-title-container p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .status-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 0.8rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .status-dot.connected {
+            background-color: var(--color-emerald);
+            box-shadow: 0 0 8px var(--color-emerald);
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.disconnected {
+            background-color: var(--color-rose);
+            box-shadow: 0 0 8px var(--color-rose);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+        }
+
+        /* Main Workspace */
+        main {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 380px 1fr 380px;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            max-width: 1800px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        @media (max-width: 1200px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sidebar & Panel Containers */
+        .panel {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .panel-title {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 0.25rem;
+        }
+
+        /* Control Card */
+        .glass-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Query Card List */
+        .query-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .query-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .query-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 3px;
+            height: 100%;
+            transition: transform 0.2s ease;
+            transform: scaleY(0.7);
+            background-color: var(--text-muted);
+        }
+
+        .query-card:hover {
+            background: rgba(30, 41, 59, 0.7);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .query-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        /* Cyan theme - Query A */
+        .query-card.cyan:hover { box-shadow: 0 0 15px rgba(6, 182, 212, 0.1); border-color: rgba(6, 182, 212, 0.3); }
+        .query-card.cyan::before { background-color: var(--color-cyan); }
+        .query-card.cyan .query-tag { color: var(--color-cyan); background: rgba(6, 182, 212, 0.1); }
+
+        /* Indigo theme - Query B */
+        .query-card.indigo:hover { box-shadow: 0 0 15px rgba(99, 102, 241, 0.1); border-color: rgba(99, 102, 241, 0.3); }
+        .query-card.indigo::before { background-color: var(--color-indigo); }
+        .query-card.indigo .query-tag { color: var(--color-indigo); background: rgba(99, 102, 241, 0.1); }
+
+        /* Rose theme - Query C */
+        .query-card.rose:hover { box-shadow: 0 0 15px rgba(244, 63, 94, 0.1); border-color: rgba(244, 63, 94, 0.3); }
+        .query-card.rose::before { background-color: var(--color-rose); }
+        .query-card.rose .query-tag { color: var(--color-rose); background: rgba(244, 63, 94, 0.1); }
+
+        /* Emerald theme - Query D */
+        .query-card.emerald:hover { box-shadow: 0 0 15px rgba(16, 185, 205, 0.1); border-color: rgba(16, 185, 129, 0.3); }
+        .query-card.emerald::before { background-color: var(--color-emerald); }
+        .query-card.emerald .query-tag { color: var(--color-emerald); background: rgba(16, 185, 129, 0.1); }
+
+        .query-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .query-tag {
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 0.15rem 0.4rem;
+            border-radius: 0.25rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .query-limits {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .query-prompt {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .query-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .btn-card-action {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-primary);
+            padding: 0.35rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .btn-card-action:hover {
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        /* Action Buttons */
+        .action-button-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-indigo) 0%, var(--color-purple) 100%);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 0.8rem 1.2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary.danger:hover {
+            border-color: rgba(244, 63, 94, 0.4);
+            color: var(--color-rose);
+            background: rgba(244, 63, 94, 0.05);
+        }
+
+        /* Center Terminal Panel */
+        .terminal-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: var(--bg-terminal);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            height: 100%;
+        }
+
+        .terminal-header {
+            background: rgba(15, 22, 41, 0.9);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .terminal-window-buttons {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .win-btn {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .win-btn.close { background-color: #ef4444; }
+        .win-btn.minimize { background-color: #eab308; }
+        .win-btn.expand { background-color: #22c55e; }
+
+        .terminal-title {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .terminal-status-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .terminal-stat {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+        }
+
+        .terminal-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: #d1d5db;
+            scroll-behavior: smooth;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            max-height: calc(100vh - 250px);
+            min-height: 450px;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* Terminal Line Color Coding */
+        .line-default { color: #d1d5db; }
+        .line-banner { color: var(--color-amber); font-weight: 600; }
+        .line-perception { color: #60a5fa; }
+        .line-decision { color: var(--color-purple); }
+        .line-action { color: var(--color-cyan); }
+        .line-result { color: #a7f3d0; }
+        .line-success { color: var(--color-emerald); font-weight: 600; }
+        .line-memory { color: var(--color-rose); }
+        .line-warning { color: #f59e0b; }
+        .line-system { color: var(--text-muted); font-style: italic; }
+
+        .terminal-footer {
+            background: rgba(15, 22, 41, 0.9);
+            border-top: 1px solid var(--border-color);
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .terminal-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .checkbox-container input {
+            cursor: pointer;
+        }
+
+        /* Memory panel (Right sidebar) */
+        .memory-panel-tabs {
+            display: flex;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 1rem;
+            gap: 0.5rem;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 0.5rem 0.75rem;
+            font-family: var(--font-heading);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            color: var(--color-cyan);
+            border-bottom-color: var(--color-cyan);
+        }
+
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 0.75rem;
+            overflow-y: auto;
+            max-height: calc(100vh - 250px);
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .memory-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .memory-record-card {
+            background: rgba(30, 41, 59, 0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .memory-record-key {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-cyan);
+            word-break: break-all;
+        }
+
+        .memory-record-val {
+            font-size: 0.8rem;
+            color: var(--text-primary);
+            line-height: 1.4;
+        }
+
+        .memory-record-time {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        .empty-placeholder {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px dashed var(--border-color);
+            border-radius: 0.5rem;
+        }
+
+        .history-timeline {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            padding-left: 1.25rem;
+            margin-left: 0.5rem;
+        }
+
+        .history-timeline::before {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            left: 0;
+            width: 2px;
+            height: calc(100% - 0.5rem);
+            background-color: var(--border-color);
+        }
+
+        .history-node {
+            position: relative;
+            padding-bottom: 1.25rem;
+        }
+
+        .history-node:last-child {
+            padding-bottom: 0;
+        }
+
+        .history-node::before {
+            content: '';
+            position: absolute;
+            top: 0.25rem;
+            left: calc(-1.25rem - 4px);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--color-indigo);
+            box-shadow: 0 0 5px rgba(99, 102, 241, 0.8);
+        }
+
+        .history-node.success::before {
+            background-color: var(--color-emerald);
+            box-shadow: 0 0 5px rgba(16, 185, 129, 0.8);
+        }
+
+        .history-node-title {
+            font-family: var(--font-heading);
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .history-node-action {
+            color: var(--text-primary);
+        }
+
+        .history-node-iter {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+            font-family: var(--font-mono);
+        }
+
+        .history-node-summary {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+            line-height: 1.4;
+        }
+
+        .history-node-time {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            margin-top: 0.15rem;
+        }
+
+        footer {
+            background: var(--bg-surface);
+            border-top: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: auto;
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header containing branding, server status, and title -->
+    <header>
+        <div class="header-left">
+            <div class="logo-glow">AG</div>
+            <div class="header-title-container">
+                <h1 id="main-title">Autonomous Research Agent Console</h1>
+                <p>Four-Layer Cognitive Architecture & RAG Benchmark — Assignment 7</p>
+            </div>
+        </div>
+        
+        <div class="header-right">
+            <!-- Connection indicators -->
+            <div class="status-badge" id="gateway-status-badge">
+                <span class="status-dot disconnected" id="gateway-status-dot"></span>
+                <span>Gateway: <strong id="gateway-status-text">Checking...</strong></span>
+            </div>
+            <div class="status-badge" id="mcp-status-badge">
+                <span class="status-dot connected" id="mcp-status-dot"></span>
+                <span>MCP Server: <strong>Active</strong></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main grid layout -->
+    <main>
+        <!-- Left Panel: Controls & Queries -->
+        <section class="panel" aria-labelledby="controls-heading">
+            <h2 id="controls-heading" class="panel-title">Control Center</h2>
+            
+            <div class="glass-card">
+                <div class="query-list" style="max-height: calc(100vh - 350px); overflow-y: auto; padding-right: 0.5rem; display: flex; flex-direction: column; gap: 0.75rem;">
+                    <!-- Query A -->
+                    <div class="query-card cyan" onclick="triggerQuery('Find latest AI regulations in India and summarize key changes', 'query-a')">
+                        <div class="query-header">
+                            <span class="query-tag">Query A</span>
+                            <span class="query-limits">Limit: 8 iter</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-a">Find latest AI regulations in India and summarize key changes</div>
+                        <div class="query-actions">
+                            <button id="run-query-a" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query B -->
+                    <div class="query-card indigo" onclick="triggerQuery('Find top open-source vector databases and compare licensing', 'query-b')">
+                        <div class="query-header">
+                            <span class="query-tag">Query B</span>
+                            <span class="query-limits">Limit: 8 iter</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-b">Find top open-source vector databases and compare licensing</div>
+                        <div class="query-actions">
+                            <button id="run-query-b" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query C (Save) -->
+                    <div class="query-card rose" onclick="triggerQuery('Remember that my preferred database is PostgreSQL', 'query-c-1')">
+                        <div class="query-header">
+                            <span class="query-tag">Query C (Save)</span>
+                            <span class="query-limits">Durable Memory</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-c-1">Remember that my preferred database is PostgreSQL</div>
+                        <div class="query-actions">
+                            <button id="run-query-c-1" class="btn-card-action">
+                                ▶ Execute Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query C (Recall) -->
+                    <div class="query-card rose" onclick="triggerQuery('What database do I prefer?', 'query-c-2')">
+                        <div class="query-header">
+                            <span class="query-tag">Query C (Recall)</span>
+                            <span class="query-limits">Durable Memory</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-c-2">What database do I prefer?</div>
+                        <div class="query-actions">
+                            <button id="run-query-c-2" class="btn-card-action">
+                                ▶ Execute Recall
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query D -->
+                    <div class="query-card emerald" onclick="triggerQuery('Find best MCP servers for browser automation and explain installation', 'query-d')">
+                        <div class="query-header">
+                            <span class="query-tag">Query D</span>
+                            <span class="query-limits">Tool Chain</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-d">Find best MCP servers for browser automation and explain installation</div>
+                        <div class="query-actions">
+                            <button id="run-query-d" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query E (RAG 1) -->
+                    <div class="query-card cyan" onclick="triggerQuery('What is the name of the system designed to clean the air in New Kyoto?', 'query-e')">
+                        <div class="query-header">
+                            <span class="query-tag">Query E</span>
+                            <span class="query-limits">RAG Semantic</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-e">What is the name of the system designed to clean the air in New Kyoto?</div>
+                        <div class="query-actions">
+                            <button id="run-query-e" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query F (RAG 2) -->
+                    <div class="query-card indigo" onclick="triggerQuery('How do underground military silos send messages to each other without cables?', 'query-f')">
+                        <div class="query-header">
+                            <span class="query-tag">Query F</span>
+                            <span class="query-limits">RAG Semantic</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-f">How do underground military silos send messages to each other without cables?</div>
+                        <div class="query-actions">
+                            <button id="run-query-f" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query G (RAG 3) -->
+                    <div class="query-card rose" onclick="triggerQuery('What is the primary power source of the Aegis shielding system?', 'query-g')">
+                        <div class="query-header">
+                            <span class="query-tag">Query G</span>
+                            <span class="query-limits">RAG Direct</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-g">What is the primary power source of the Aegis shielding system?</div>
+                        <div class="query-actions">
+                            <button id="run-query-g" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query H (RAG 4) -->
+                    <div class="query-card emerald" onclick="triggerQuery('Who is the lead scientist for the Chronos project?', 'query-h')">
+                        <div class="query-header">
+                            <span class="query-tag">Query H</span>
+                            <span class="query-limits">RAG Direct</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-h">Who is the lead scientist for the Chronos project?</div>
+                        <div class="query-actions">
+                            <button id="run-query-h" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Query I (RAG 5) -->
+                    <div class="query-card cyan" onclick="triggerQuery('What is the maximum payload capacity of the Zephyr heavy lifter drone?', 'query-i')">
+                        <div class="query-header">
+                            <span class="query-tag">Query I</span>
+                            <span class="query-limits">RAG Direct</span>
+                        </div>
+                        <div class="query-prompt" id="prompt-query-i">What is the maximum payload capacity of the Zephyr heavy lifter drone?</div>
+                        <div class="query-actions">
+                            <button id="run-query-i" class="btn-card-action">
+                                ▶ Execute Run
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-button-group" style="margin-top: 1.25rem; border-top: 1px solid var(--border-color); padding-top: 1.25rem;">
+                    <button id="run-all" class="btn-primary" onclick="triggerSequentialAll()">
+                        🔄 Run All Sequentially (A → I)
+                    </button>
+                    <button id="reset-state" class="btn-secondary danger" onclick="cleanState()">
+                        🧹 Clear Agent State (Reset Memory)
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Center Panel: Live Terminal Monitor -->
+        <section class="panel" aria-labelledby="terminal-heading" style="grid-column: span 1;">
+            <h2 id="terminal-heading" class="panel-title">
+                Live Terminal Monitor
+                <span id="active-query-badge" style="font-size: 0.75rem; background: rgba(99, 102, 241, 0.1); color: var(--color-indigo); padding: 0.2rem 0.5rem; border-radius: 0.25rem; font-weight: 500; display: none;">
+                    Query A running
+                </span>
+            </h2>
+            
+            <div class="terminal-container">
+                <div class="terminal-header">
+                    <div class="terminal-window-buttons">
+                        <span class="win-btn close"></span>
+                        <span class="win-btn minimize"></span>
+                        <span class="win-btn expand"></span>
+                    </div>
+                    <div class="terminal-title">agent7@cognitive-loop: ~</div>
+                    <div class="terminal-status-info">
+                        <span class="terminal-stat" id="stat-time">Time: 0.0s</span>
+                        <span class="terminal-stat" id="stat-iter">Iter: 0/8</span>
+                    </div>
+                </div>
+                
+                <div class="terminal-body" id="terminal-output" role="log" aria-live="polite">
+                    <div class="line-system">[System initialized. Console ready. Select a query to begin.]</div>
+                </div>
+                
+                <div class="terminal-footer">
+                    <div class="terminal-controls">
+                        <label class="checkbox-container" id="lbl-autoscroll">
+                            <input type="checkbox" id="autoscroll-toggle" checked>
+                            Auto-scroll
+                        </label>
+                    </div>
+                    <button id="copy-logs" class="btn-card-action" onclick="copyConsoleLogs()">
+                        📋 Copy Logs
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Right Panel: Memory & History Inspector -->
+        <section class="panel" aria-labelledby="inspector-heading">
+            <h2 id="inspector-heading" class="panel-title">Cognitive Inspector</h2>
+            
+            <div class="glass-card" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+                <div class="memory-panel-tabs">
+                    <button id="tab-memory" class="tab-btn active" onclick="switchTab('memory')">Memory Database</button>
+                    <button id="tab-history" class="tab-btn" onclick="switchTab('history')">Step History</button>
+                </div>
+
+                <!-- Memory Database Tab -->
+                <div class="tab-content active" id="content-memory">
+                    <div class="memory-grid" id="memory-records-container">
+                        <div class="empty-placeholder">
+                            <span>💾</span>
+                            <span>No facts saved in state memory.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step History Tab -->
+                <div class="tab-content" id="content-history">
+                    <div class="history-timeline" id="history-timeline-container">
+                        <div class="empty-placeholder">
+                            <span>⏳</span>
+                            <span>No agent history logged yet.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Autonomous Research Agent Benchmarking Suite. All queries run locally via LLM Gateway V3.</p>
+    </footer>
+
+    <script>
+        let isRunning = false;
+        let activeQueryType = "";
+        let runTimerInterval = null;
+        let runStartTime = null;
+
+        // Auto-refresh states on load
+        document.addEventListener("DOMContentLoaded", () => {
+            checkGatewayStatus();
+            fetchState();
+            
+            // Poll gateway status every 5 seconds
+            setInterval(checkGatewayStatus, 5000);
+        });
+
+        // Check LLM Gateway Connection
+        async function checkGatewayStatus() {
+            try {
+                const response = await fetch('/api/gateway-status');
+                const data = await response.json();
+                const dot = document.getElementById('gateway-status-dot');
+                const text = document.getElementById('gateway-status-text');
+                
+                if (data.status === 'connected') {
+                    dot.className = 'status-dot connected';
+                    text.innerText = 'Connected (8101)';
+                } else {
+                    dot.className = 'status-dot disconnected';
+                    text.innerText = 'Offline';
+                }
+            } catch (err) {
+                document.getElementById('gateway-status-dot').className = 'status-dot disconnected';
+                document.getElementById('gateway-status-text').innerText = 'Offline';
+            }
+        }
+
+        // Fetch Memory and History from Backend
+        async function fetchState() {
+            try {
+                const response = await fetch('/api/get-state');
+                const data = await response.json();
+                
+                renderMemory(data.memory || []);
+                renderHistory(data.history || []);
+            } catch (err) {
+                console.error("Failed to load agent state:", err);
+            }
+        }
+
+        // Clean Agent State (Reset files)
+        async function cleanState() {
+            if (isRunning) {
+                alert("Cannot reset state while a query is executing.");
+                return;
+            }
+            if (confirm("Are you sure you want to clean the agent state (memory.json and history.json)?")) {
+                try {
+                    const response = await fetch('/api/clean-state');
+                    const data = await response.json();
+                    if (data.status === 'success') {
+                        printSystemLine("🧹 Memory and history state files cleared successfully.");
+                        fetchState();
+                    } else {
+                        printSystemLine("❌ Reset state failed: " + data.message, "line-warning");
+                    }
+                } catch (err) {
+                    printSystemLine("❌ Error resetting state: " + err, "line-warning");
+                }
+            }
+        }
+
+        // Render Memory Records to Inspector UI
+        function renderMemory(records) {
+            const container = document.getElementById('memory-records-container');
+            if (records.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-placeholder">
+                        <span>💾</span>
+                        <span>No facts saved in state memory.</span>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            records.forEach(rec => {
+                const prettyTime = rec.timestamp ? new Date(rec.timestamp).toLocaleTimeString() : '';
+                html += `
+                    <div class="memory-record-card">
+                        <div class="memory-record-key">${escapeHtml(rec.key)}</div>
+                        <div class="memory-record-val">${escapeHtml(rec.value)}</div>
+                        <div class="memory-record-time">${prettyTime}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Render Step History to Inspector UI
+        function renderHistory(history) {
+            const container = document.getElementById('history-timeline-container');
+            if (history.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-placeholder">
+                        <span>⏳</span>
+                        <span>No agent history logged yet.</span>
+                    </div>`;
+                return;
+            }
+
+            let html = '';
+            history.forEach(node => {
+                const isFinal = node.action === 'final_answer' || node.action === 'save_memory';
+                const nodeClass = isFinal ? 'history-node success' : 'history-node';
+                const prettyTime = node.timestamp ? new Date(node.timestamp).toLocaleTimeString() : '';
+                
+                html += `
+                    <div class="${nodeClass}">
+                        <div class="history-node-title">
+                            <span class="history-node-action">${escapeHtml(node.action)}</span>
+                            <span class="history-node-iter">Iter ${node.iteration}</span>
+                        </div>
+                        <div class="history-node-summary">${escapeHtml(node.summary)}</div>
+                        <div class="history-node-time">${prettyTime}</div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Tab selection helper
+        function switchTab(tabName) {
+            document.getElementById('tab-memory').classList.remove('active');
+            document.getElementById('tab-history').classList.remove('active');
+            document.getElementById('content-memory').classList.remove('active');
+            document.getElementById('content-history').classList.remove('active');
+
+            if (tabName === 'memory') {
+                document.getElementById('tab-memory').classList.add('active');
+                document.getElementById('content-memory').classList.add('active');
+            } else {
+                document.getElementById('tab-history').classList.add('active');
+                document.getElementById('content-history').classList.add('active');
+            }
+        }
+
+        // Visual selection card highlight
+        function selectQuery(cardClass) {
+            // Remove active classes
+            document.querySelectorAll('.query-card').forEach(c => {
+                c.style.transform = '';
+                c.style.boxShadow = '';
+            });
+        }
+
+        // Terminal Line Helper
+        function appendTerminalLine(text, className = "line-default") {
+            const consoleEl = document.getElementById('terminal-output');
+            const lineEl = document.createElement('div');
+            lineEl.className = className;
+            lineEl.innerText = text;
+            consoleEl.appendChild(lineEl);
+            
+            if (document.getElementById('autoscroll-toggle').checked) {
+                consoleEl.scrollTop = consoleEl.scrollHeight;
+            }
+        }
+
+        function printSystemLine(text, className = "line-system") {
+            appendTerminalLine(text, className);
+        }
+
+        // Parse line format and apply custom colors
+        function colorizeAndPrintLine(line) {
+            let className = "line-default";
+            const trimmed = line.trim();
+            
+            if (trimmed.startsWith("===") || trimmed.startsWith("---") || trimmed.startsWith("==")) {
+                className = "line-banner";
+            } else if (trimmed.includes("🔍  [PERCEPTION]") || trimmed.includes("Intent") || trimmed.includes("Task type") || trimmed.includes("Entities")) {
+                className = "line-perception";
+            } else if (trimmed.includes("🧠  [DECISION]") || trimmed.includes("Action") || trimmed.includes("Reasoning")) {
+                className = "line-decision";
+            } else if (trimmed.includes("ACTION:") || trimmed.includes("🌐") || trimmed.includes("🕷️")) {
+                className = "line-action";
+            } else if (trimmed.includes("Result") || trimmed.includes("Got ") || trimmed.includes(" chars")) {
+                className = "line-result";
+            } else if (trimmed.includes("✅  [FINAL ANSWER]") || trimmed.includes("✔ Saved to memory") || trimmed.includes("🏁  DONE")) {
+                className = "line-success";
+            } else if (trimmed.includes("💾  [ACTION: recall_memory]") || trimmed.includes("Memory recall") || trimmed.includes("💾  [ACTION: save_memory]")) {
+                className = "line-memory";
+            } else if (trimmed.includes("⚠️") || trimmed.includes("⚠") || trimmed.includes("[Backend streaming error")) {
+                className = "line-warning";
+            }
+            
+            // Check for iteration updates in output to sync counters
+            if (trimmed.includes("ITERATION")) {
+                // Find "ITERATION X / Y"
+                const match = trimmed.match(/ITERATION\s+(\d+)\s*\/\s*(\d+)/i);
+                if (match) {
+                    document.getElementById('stat-iter').innerText = `Iter: ${match[1]}/${match[2]}`;
+                }
+            } else if (trimmed.includes("🏁  DONE")) {
+                // Parse final iteration count e.g. "🏁  DONE  |  3 iterations"
+                const match = trimmed.match(/(\d+)\s+iterations/i);
+                if (match) {
+                    const currentIterText = document.getElementById('stat-iter').innerText;
+                    const maxPart = currentIterText.split('/')[1] || "8";
+                    document.getElementById('stat-iter').innerText = `Iter: ${match[1]}/${maxPart}`;
+                }
+            }
+
+            appendTerminalLine(line, className);
+        }
+
+        // Trigger Executing a single Query
+        function triggerQuery(queryText, typeLabel) {
+            if (isRunning) {
+                alert("An agent task is currently running. Please wait for completion or interrupt.");
+                return;
+            }
+            
+            // Start
+            isRunning = true;
+            activeQueryType = typeLabel;
+            
+            // UI State
+            document.getElementById('active-query-badge').innerText = `Query Running: ${typeLabel.toUpperCase()}`;
+            document.getElementById('active-query-badge').style.display = 'inline-block';
+            document.getElementById('stat-iter').innerText = `Iter: 0/8`;
+            
+            // Clear Console
+            const consoleEl = document.getElementById('terminal-output');
+            consoleEl.innerHTML = '';
+            
+            printSystemLine(`🚀 Starting query execution: "${queryText}"...`);
+            
+            // Start timer
+            runStartTime = Date.now();
+            document.getElementById('stat-time').innerText = `Time: 0.0s`;
+            runTimerInterval = setInterval(() => {
+                const elapsed = ((Date.now() - runStartTime) / 1000).toFixed(1);
+                document.getElementById('stat-time').innerText = `Time: ${elapsed}s`;
+            }, 100);
+
+            // Server SSE request
+            const eventSource = new EventSource(`/api/stream-query?query=${encodeURIComponent(queryText)}`);
+            
+            eventSource.onmessage = function(event) {
+                if (event.data === "__EOF__") {
+                    eventSource.close();
+                    cleanupRun();
+                    printSystemLine("🏁 Execution stream completed.");
+                    fetchState(); // refresh memory dashboard
+                } else {
+                    colorizeAndPrintLine(event.data);
+                }
+            };
+
+            eventSource.onerror = function(err) {
+                console.error("SSE stream error:", err);
+                eventSource.close();
+                cleanupRun();
+                printSystemLine("⚠️ Stream closed unexpectedly due to connection or completion error.", "line-warning");
+                fetchState();
+            };
+        }
+
+        // Cleanup timer and indicators
+        function cleanupRun() {
+            isRunning = false;
+            if (runTimerInterval) {
+                clearInterval(runTimerInterval);
+                runTimerInterval = null;
+            }
+            document.getElementById('active-query-badge').style.display = 'none';
+        }
+
+        // Trigger Sequential execution of all queries
+        async function triggerSequentialAll() {
+            if (isRunning) {
+                alert("An agent task is currently running. Please wait for completion.");
+                return;
+            }
+            
+            if (!confirm("This will clean the current state, and run Query A, B, C (Store & Recall), and D sequentially. Continue?")) {
+                return;
+            }
+
+            // Clean state first
+            try {
+                const resp = await fetch('/api/clean-state');
+                const data = await resp.json();
+                if (data.status !== 'success') {
+                    alert("Failed to reset state before sequential run: " + data.message);
+                    return;
+                }
+            } catch (err) {
+                alert("Failed to reset state: " + err);
+                return;
+            }
+
+            // Define sequential queries
+            const pipeline = [
+                { query: "Find latest AI regulations in India and summarize key changes", type: "Query A" },
+                { query: "Find top open-source vector databases and compare licensing", type: "Query B" },
+                { query: "Remember that my preferred database is PostgreSQL", type: "Query C (Save)" },
+                { query: "What database do I prefer?", type: "Query C (Recall)" },
+                { query: "Find best MCP servers for browser automation and explain installation", type: "Query D" },
+                { query: "What is the name of the system designed to clean the air in New Kyoto?", type: "Query E (RAG)" },
+                { query: "How do underground military silos send messages to each other without cables?", type: "Query F (RAG)" },
+                { query: "What is the primary power source of the Aegis shielding system?", type: "Query G (RAG)" },
+                { query: "Who is the lead scientist for the Chronos project?", type: "Query H (RAG)" },
+                { query: "What is the maximum payload capacity of the Zephyr heavy lifter drone?", type: "Query I (RAG)" }
+            ];
+
+            const consoleEl = document.getElementById('terminal-output');
+            consoleEl.innerHTML = '';
+            printSystemLine("🔄 Initializing full sequential benchmark runner...");
+            
+            // Loop and run each sequentially
+            for (let i = 0; i < pipeline.length; i++) {
+                const item = pipeline[i];
+                printSystemLine(`\n======================================================================`);
+                printSystemLine(`📂 STAGE ${i+1}/${pipeline.length}: Running ${item.type}...`);
+                printSystemLine(`======================================================================\n`);
+                
+                await new Promise((resolve) => {
+                    // Set running state
+                    isRunning = true;
+                    document.getElementById('active-query-badge').innerText = `Stage: ${item.type}`;
+                    document.getElementById('active-query-badge').style.display = 'inline-block';
+                    document.getElementById('stat-iter').innerText = `Iter: 0/8`;
+                    
+                    // Start sub-timer
+                    runStartTime = Date.now();
+                    runTimerInterval = setInterval(() => {
+                        const elapsed = ((Date.now() - runStartTime) / 1000).toFixed(1);
+                        document.getElementById('stat-time').innerText = `Time: ${elapsed}s`;
+                    }, 100);
+
+                    const eventSource = new EventSource(`/api/stream-query?query=${encodeURIComponent(item.query)}`);
+                    
+                    eventSource.onmessage = function(event) {
+                        if (event.data === "__EOF__") {
+                            eventSource.close();
+                            cleanupRun();
+                            printSystemLine(`✔ ${item.type} completed!`);
+                            fetchState(); // refresh memory panel intermediate states
+                            setTimeout(resolve, 2000); // 2 seconds break between stages
+                        } else {
+                            colorizeAndPrintLine(event.data);
+                        }
+                    };
+
+                    eventSource.onerror = function(err) {
+                        eventSource.close();
+                        cleanupRun();
+                        printSystemLine(`⚠️ Stream error in ${item.type}`, "line-warning");
+                        fetchState();
+                        setTimeout(resolve, 2000);
+                    };
+                });
+            }
+            
+            printSystemLine("\n✨ All benchmark pipeline stages executed successfully!");
+        }
+
+        // Copy Terminal Logs to Clipboard
+        function copyConsoleLogs() {
+            const consoleEl = document.getElementById('terminal-output');
+            const text = consoleEl.innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Terminal output copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy logs: " + err);
+            });
+        }
+
+        // Utility: HTML Escaping
+        function escapeHtml(str) {
+            if (!str) return '';
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>

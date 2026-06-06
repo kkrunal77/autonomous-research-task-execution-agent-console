@@ -1,0 +1,93 @@
+
+======================================================================
+  🤖  Autonomous Research Agent  |  Assignment 7
+======================================================================
+  Query  : Find latest AI regulations in India and summarize key changes
+  Max iterations: 8
+
+🔍  [PERCEPTION]
+     Analysing query intent…
+
+  →  [Intent]
+     Find latest AI regulations in India and summarize key changes
+
+  →  [Task type]
+     web_research
+
+  →  [Entities]
+     none
+
+  →  [Requires tools]
+     True
+
+  →  [Requires memory]
+     False
+
+======================================================================
+  ⚡  ITERATION 1 / 8
+======================================================================
+
+🧠  [DECISION]
+     Choosing next action…
+
+  →  [Action]
+     search_web
+
+  →  [Reasoning]
+     Gateway error — defaulting to web search.
+
+🌐  [ACTION: web_search]
+     Find latest AI regulations in India and summarize key changes
+
+  →  [Result]
+     Got 2247 chars of search results
+
+======================================================================
+  ⚡  ITERATION 2 / 8
+======================================================================
+
+🧠  [DECISION]
+     Choosing next action…
+
+  →  [Action]
+     final_answer
+
+  →  [Reasoning]
+     Gateway error — compiling from accumulated context.
+
+✅  [FINAL ANSWER]
+
+[Search: Find latest AI regulations in India and summarize key changes]
+**India AI Regulation Overview - India | Regulations.AI - The Site on AI ...**
+https://regulations.ai/regulations/india-summary
+AI law in India: India follows a principle-based, techno-legal AI framework centered on the 2025 Governance Guidelines and the DPDP Act 2023. This approach emphasizes 'AI for All,' balancing rapid innovation with safety through a hybrid model of horizontal principles and sectoral oversight by bodies like the RBI and the new AI Safety Institute....
+
+**India - AI Governance Guidelines (2025) - regulations.ai**
+https://regulations.ai/regulations/india
+The Ministry of Electronics & IT (MeitY) published the India AI Governance Guidelines under the IndiaAI Mission on 5 November 2025. Principle-based techno-legal guidance built on seven 'sutras', proposing institutional architectures (AIGG, TPEC, AISI), voluntary compliance, graded liability and an action plan across short, medium and long terms.
+
+**AI Regulations Tracker - Tracking various AI developments in India**
+https://sflc.in/ai-regulations-tracker/
+Track India's evolving AI policy landscape through SFLC.in AI Regulations Tracker. Explore the latest developments in AI laws, government initiatives, ethical guidelines, and regulatory frameworks shaping artificial intelligence in India.
+
+**AI Laws and Regulations in India as of 2026 - prashantmali.com**
+https://www.prashantmali.com/cyber-law-blog-india/ai-laws-and-regulations-in-india-as-of-2026
+AI Laws and Regulations in India as of 2026: A Comprehensive Overview for Practitioners, Businesses, and Policymakers As over two decades navigating the intersections of technology, cybersecurity, and the law, I've witnessed India's digital journey from the early days of the IT Act to today's AI-driven ambitions.
+
+**PDF AI Policy and Regulations of India**
+https://newmind.ai/pdf/India%20Country%20Report%20-%20NewMind%20AI%20Journal%20Report-17.05.2025.pdf
+Introduction This comprehensive report examines India's current state with a focus on recent legal regulations from 2020-2025, government AI action plan, intellectual property and data usage frameworks, AI outputs and IP protections, AI investments and computing power development, and judicial decisions on artificial intelligence applications.
+
+======================================================================
+  🏁  DONE  |  2 iterations  |  81.7s
+======================================================================
+
+======================================================================
+📋  STRUCTURED RESULT
+======================================================================
+Query          : Find latest AI regulations in India and summarize key changes
+Iterations used: 2
+Sources        : 5 URL(s)
+  - https://regulations.ai/regulations/india-summary
+  - https://regulations.ai/regulations/india
+  - https://sflc.in/ai-regulations-tracker/

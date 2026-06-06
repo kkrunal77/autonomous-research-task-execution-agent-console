@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+.uv/
+
+# Environment secrets
+.env
+
+# SQLite / state
+*.db
+*.db-journal
+
+# Sandbox (MCP file tools)
+sandbox/
+
+# Agent state — exclude from repo (cleanable between attempts)
+state/
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

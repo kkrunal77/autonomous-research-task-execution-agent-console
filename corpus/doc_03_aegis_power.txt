@@ -1,0 +1,4 @@
+System Spec: Aegis Shielding Power Requirements
+Hardware ID: SHD-9988-AEGIS
+Operating Status: Active
+Description: The Aegis shielding system relies on a central deuterium fusion reactor. It provides up to 500 Terawatts of clean energy to maintain the plasma bubble. In the event of a plasma instability, the secondary capacitor array kicks in to prevent shield collapse.

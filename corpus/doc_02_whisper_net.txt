@@ -1,0 +1,4 @@
+Framework Name: Project Whisper-Net Subterranean System
+Security Level: Top Secret (Level-5)
+Core Tech: Acoustic Resonance Modulators
+Description: Project Whisper-Net is a subterranean acoustic communication framework developed for underground military silos. It operates on low-frequency vibrations transmitted through rock layers. This network is completely immune to electromagnetic pulses (EMP) and satellite tracking.

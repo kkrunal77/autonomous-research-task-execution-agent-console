@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "PerceptionOutput",
+  "description": "Validated output contract of the Perception Layer. Every LLM response from the Perception layer must conform to this schema before being passed to the Decision layer.",
+  "type": "object",
+  "required": ["intent", "entities", "requires_memory", "requires_tools", "task_type"],
+  "additionalProperties": false,
+  "properties": {
+    "intent": {
+      "type": "string",
+      "description": "Short description of what the user wants",
+      "minLength": 3
+    },
+    "entities": {
+      "type": "array",
+      "description": "Key concepts or named entities extracted from the query",
+      "items": { "type": "string" }
+    },
+    "requires_memory": {
+      "type": "boolean",
+      "description": "True when user references past conversations or personal facts stored in memory"
+    },
+    "requires_tools": {
+      "type": "boolean",
+      "description": "True when current LLM knowledge alone cannot answer — live web search or URL crawl needed"
+    },
+    "task_type": {
+      "type": "string",
+      "description": "Classification of the query type",
+      "enum": [
+        "web_research",
+        "multi_hop_reasoning",
+        "memory_recall",
+        "tool_chaining",
+        "general_qa"
+      ]
+    }
+  },
+  "examples": [
+    {
+      "intent": "Find latest AI regulations in India",
+      "entities": ["AI regulations", "India"],
+      "requires_memory": false,
+      "requires_tools": true,
+      "task_type": "web_research"
+    },
+    {
+      "intent": "Recall the user's preferred database",
+      "entities": ["preferred database"],
+      "requires_memory": true,
+      "requires_tools": false,
+      "task_type": "memory_recall"
+    }
+  ]
+}

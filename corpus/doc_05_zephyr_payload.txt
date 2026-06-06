@@ -1,0 +1,4 @@
+Technical Specifications: Zephyr Heavy Lifter Drone
+Model Number: ZPH-88-HEAVY
+Manufacturer: Skyward Logistics Group
+Description: The Zephyr heavy lifter drone is capable of carrying up to 12 metric tons of cargo to high altitude. It features eight independent hydrogen-cell thrusters and a reinforced carbon-fiber cargo bay. The drone is designed for operating in extreme weather conditions.

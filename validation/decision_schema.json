@@ -1,0 +1,86 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DecisionOutput",
+  "description": "Validated output contract of the Decision Layer. Every LLM response from the Decision layer must conform to this schema before being passed to the Action layer.",
+  "type": "object",
+  "required": ["action", "reasoning", "tool_name", "tool_args", "answer"],
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "The single next action the agent will take",
+      "enum": [
+        "search_web",
+        "crawl_page",
+        "retrieve_context",
+        "recall_memory",
+        "save_memory",
+        "final_answer"
+      ]
+    },
+    "reasoning": {
+      "type": "string",
+      "description": "One sentence explaining why this action was chosen",
+      "minLength": 5
+    },
+    "tool_name": {
+      "type": ["string", "null"],
+      "description": "MCP tool name to invoke. Set to 'web_search' for search_web action; 'fetch_url' or 'index_document' for crawl_page action; 'retrieve_context' or 'search_knowledge' for retrieve_context action; and null for other actions."
+    },
+    "tool_args": {
+      "type": "object",
+      "properties": {
+        "query": { "type": "string", "description": "Search query or term" },
+        "url": { "type": "string", "description": "URL to scrape or crawl" },
+        "key": { "type": "string", "description": "Memory key to save (e.g. 'preferred_database')" },
+        "value": { "type": "string", "description": "Memory value to save (e.g. 'PostgreSQL')" },
+        "max_results": { "type": "integer", "description": "Max search results" },
+        "path": { "type": "string", "description": "Path to document file to index" },
+        "k": { "type": "integer", "description": "Number of chunks to return" }
+      },
+      "description": "Key-value arguments passed to the tool or action. For search_web: {'query': '...'}, for crawl_page: {'url': '...'} or {'path': '...'}, for retrieve_context: {'query': '...'} or {'query': '...', 'k': 5}, for save_memory: {'key': '...', 'value': '...'}, for final_answer/recall_memory: empty object {}",
+      "additionalProperties": true
+    },
+    "answer": {
+      "type": ["string", "null"],
+      "description": "Final answer text, only populated when action is final_answer"
+    }
+  },
+  "examples": [
+    {
+      "action": "retrieve_context",
+      "reasoning": "Query is about subterranean military silo communications which is a local project spec.",
+      "tool_name": "retrieve_context",
+      "tool_args": { "query": "underground military silo communication" },
+      "answer": null
+    },
+    {
+      "action": "search_web",
+      "reasoning": "No context yet — need web data to answer the query.",
+      "tool_name": "web_search",
+      "tool_args": { "query": "AI regulations India 2025", "max_results": 5 },
+      "answer": null
+    },
+    {
+      "action": "crawl_page",
+      "reasoning": "Found a highly relevant URL — crawl for detailed content.",
+      "tool_name": "fetch_url",
+      "tool_args": { "url": "https://meity.gov.in/ai-policy" },
+      "answer": null
+    },
+    {
+      "action": "save_memory",
+      "reasoning": "User explicitly asked to remember this fact.",
+      "tool_name": null,
+      "tool_args": { "key": "preferred_database", "value": "PostgreSQL" },
+      "answer": null
+    },
+    {
+      "action": "final_answer",
+      "reasoning": "All required information gathered — composing final answer.",
+      "tool_name": null,
+      "tool_args": null,
+      "answer": "Your preferred database is PostgreSQL."
+    }
+  ]
+}

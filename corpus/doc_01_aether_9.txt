@@ -1,0 +1,4 @@
+Project Title: Aether-9 Atmospheric Scrubbing Facility
+Location: New Kyoto Metropolitan Sector
+Status: Operational (Tier-1)
+Description: The project code-named Aether-9 is the next-generation atmospheric carbon scrubbing facility located in New Kyoto. It utilizes superconducting graphene lattices to capture carbon dioxide. It is part of the clean-air initiative to reduce greenhouse gases in the urban dome.

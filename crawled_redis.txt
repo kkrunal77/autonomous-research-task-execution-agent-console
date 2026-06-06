@@ -1,0 +1,177 @@
+Skip to:
+  * [Home](https://redis.io/)
+  * [Content](https://redis.io/blog/best-open-source-vector-databases-comparison/#content)
+  * [Footer navigation](https://redis.io/blog/best-open-source-vector-databases-comparison/#footer)
+
+
+Your agents aren't failing. Their context is.
+[See how we fix it](https://redis.io/iris/)
+[](https://redis.io/)
+[ ![Redis Iris](https://cdn.sanity.io/images/sy1jschh/production/43c9a99e04264ff3ed739c052201b011d3c6030a-32x32.svg)Redis Iris ](https://redis.io/iris/)
+  * [Platform](https://redis.io/blog/best-open-source-vector-databases-comparison/)
+Products
+    * [![Redis Iris](https://cdn.sanity.io/images/sy1jschh/production/9793c0892518539b1babdf64b577ffd12bca7577-32x32.svg)Redis IrisReal-time context for agents](https://redis.io/iris/)
+    * [![Redis Cloud](https://cdn.sanity.io/images/sy1jschh/production/5f60e1427a8be962bb08ee8764c012b5e1f654f4-64x64.svg)Redis CloudFully managed and integrated with Google Cloud, Azure, and AWS](https://redis.io/cloud/)
+    * [![Redis Software 64px](https://cdn.sanity.io/images/sy1jschh/production/6e8022b300501627786cac386f00b9caa6a3a43b-64x64.svg)Redis SoftwareSelf-managed software with enterprise-grade compliance and reliability](https://redis.io/software/)
+    * [![Redis Open Source](https://cdn.sanity.io/images/sy1jschh/production/378b62e5358b1546ba6d1c7561379a188fb33e1c-64x64.svg)Redis Open SourceIn-memory database for caching & streaming](https://redis.io/open-source/)
+    * [![Redis Search](https://cdn.sanity.io/images/sy1jschh/production/268a50e4eccc434ad96b7d5d41e75b842cf83a2c-32x33.svg)Redis SearchSearch & query for structured data](https://redis.io/search/)
+    * [![Redis Feature Form](https://cdn.sanity.io/images/sy1jschh/production/defaef0e324f07afccd84f399c373f84d758a3cf-32x32.svg)Redis Feature FormReal-time ML feature pipeline for apps & agents](https://redis.io/feature-form/)
+Tools
+    * [Redis LangCache](https://redis.io/langcache/)
+    * [Redis Insight](https://redis.io/insight/)
+    * [Redis Data Integration](https://redis.io/data-integration/)
+    * [Clients & Connectors](https://redis.io/docs/latest/develop/clients/)
+Get Redis[Downloads](https://redis.io/downloads/)
+  * [Resources](https://redis.io/blog/best-open-source-vector-databases-comparison/)
+Learn
+    * [Tutorials](https://redis.io/tutorials/)
+    * [Quick starts](https://redis.io/docs/get-started/)
+    * [Commands](https://redis.io/docs/latest/commands/)
+    * [University](https://university.redis.io/academy)
+    * [Knowledge Base](https://support.redislabs.com)
+    * [Resource Center](https://redis.io/resources/)
+    * [Blog](https://redis.io/blog/)
+    * [Demo Center](https://redis.io/demo-center/)
+    * [Developer Hub](https://redis.io/dev/)
+Connect
+    * [Customer Stories](https://redis.io/customers/)
+    * [Partners](https://redis.io/partners/)
+    * [Support](https://redis.io/support/)
+    * [Community](https://redis.io/community/)
+    * [Events & Webinars](https://redis.io/events/)
+    * [Professional Services](https://redis.io/services/professional-services/)
+Latest
+    * [Releases](https://redis.io/new/)
+    * [News & updates](https://redis.io/company/news/)
+Learn how to Build[Visit our Developer Hub](https://redis.io/dev/)
+  * [Docs](https://redis.io/docs/)
+  * [Pricing](https://redis.io/pricing/)
+
+
+  * Search[Login](https://cloud.redis.io/?utm_source=direct&utm_medium=direct&utm_campaign=%2Fblog%2Fbest-open-source-vector-databases-comparison%2F&utm_term=not%20specified&utm_content=not%20specified)[Book a meeting](https://redis.io/meeting/)[Try Redis](https://redis.io/try-free/)
+
+
+[Redis Iris![Redis Iris](https://cdn.sanity.io/images/sy1jschh/production/43c9a99e04264ff3ed739c052201b011d3c6030a-32x32.svg)](https://redis.io/iris/)
+Platform
+Products
+[Redis IrisReal-time context for agents](https://redis.io/iris/)[Redis CloudFully managed and integrated with Google Cloud, Azure, and AWS](https://redis.io/cloud/)[Redis SoftwareSelf-managed software with enterprise-grade compliance and reliability](https://redis.io/software/)[Redis Open SourceIn-memory database for caching & streaming](https://redis.io/open-source/)[Redis SearchSearch & query for structured data](https://redis.io/search/)[Redis Feature FormReal-time ML feature pipeline for apps & agents](https://redis.io/feature-form/)
+Tools
+[Redis LangCache](https://redis.io/langcache/)[Redis Insight](https://redis.io/insight/)[Redis Data Integration](https://redis.io/data-integration/)[Clients & Connectors](https://redis.io/docs/latest/develop/clients/)
+Get Redis[Downloads](https://redis.io/downloads/)
+Resources
+Learn
+[Tutorials](https://redis.io/tutorials/)[Quick starts](https://redis.io/docs/get-started/)[Commands](https://redis.io/docs/latest/commands/)[University](https://university.redis.io/academy)[Knowledge Base](https://support.redislabs.com)[Resource Center](https://redis.io/resources/)[Blog](https://redis.io/blog/)[Demo Center](https://redis.io/demo-center/)[Developer Hub](https://redis.io/dev/)
+Connect
+[Customer Stories](https://redis.io/customers/)[Partners](https://redis.io/partners/)[Support](https://redis.io/support/)[Community](https://redis.io/community/)[Events & Webinars](https://redis.io/events/)[Professional Services](https://redis.io/services/professional-services/)
+Latest
+[Releases](https://redis.io/new/)[News & updates](https://redis.io/company/news/)
+Learn how to Build[Visit our Developer Hub](https://redis.io/dev/)
+[Docs](https://redis.io/docs/)
+[Pricing](https://redis.io/pricing/)
+[Try Redis](https://redis.io/try-free/)[Book a meeting](https://redis.io/meeting/)[Login](https://cloud.redis.io/?utm_source=direct&utm_medium=direct&utm_campaign=%2Fblog%2Fbest-open-source-vector-databases-comparison%2F&utm_term=not%20specified&utm_content=not%20specified)
+Resource Center
+[Events & webinars](https://redis.io/events/)[Blog](https://redis.io/blog/)[Videos](https://redis.io/resources/videos/)[Glossary](https://redis.io/glossary/)[Resources](https://redis.io/resources/all/)[Architecture Diagrams](https://redis.io/resources/architecture-diagrams/)[Demo Center](https://redis.io/demo-center/)
+Blog
+[Events & webinars](https://redis.io/events/)[Videos](https://redis.io/resources/videos/)[Glossary](https://redis.io/glossary/)[Resources](https://redis.io/resources/all/)[Architecture Diagrams](https://redis.io/resources/architecture-diagrams/)[Demo Center](https://redis.io/demo-center/)
+[Back to blog](https://redis.io/en/blog/)
+Blog
+# Comparing the best open source vector databases 
+February 07, 20268 minute read
+[](https://redis.io/blog/author/james-tessier/)
+![James Tessier](https://cdn.sanity.io/images/sy1jschh/production/e99f93507eff9081e76dd2f1e4af822075bfe769-100x100.jpg?w=256&q=80&fit=clip&auto=format)
+James Tessier
+Open source vector databases come in two flavors: specialized tools that handle vectors and nothing else, or unified platforms that combine vector search with operational data and caching. Many teams end up managing three systems: a vector database, a cache, and an operational store. Redis combines all three in a single real-time data platform with a memory-first architecture.
+This comparison breaks down the leading open source vector databases for production AI workloads. Each database in this comparison optimizes for different tradeoffs, and the right choice depends on your scale, deployment constraints, and infrastructure preferences.
+## **What makes a vector database production-ready**
+Most vector databases solve the same core problem: store vector embeddings, find similar ones fast. The differences show up when you move from prototype to production.
+Production AI apps don't run in isolation. Your retrieval-augmented generation (RAG) pipeline needs session state. Your chatbot needs rate limiting. Your recommendation engine needs real-time feature data.
+With specialized vector databases, that means managing separate systems: a vector store, a cache, an operational database, and keeping them in sync. A unified platform handles vectors alongside everything else, reducing the number of systems to manage and eliminating network hops between your vector search and your cache.
+Three deployment models matter here: fully managed cloud services, self-managed enterprise deployments, and open source for teams who want full control. Some vector databases work best with Kubernetes orchestration, while others offer cloud-hosted options primarily. The deployment flexibility available to you often determines how much operational overhead you'll carry.
+## **The top open source vector databases & comparison**
+Here's how the leading options stack up for production AI workloads.
+### **Redis**
+Redis delivers vector search as part of a unified real-time data platform, not a standalone vector database bolted onto other tools. Vector embeddings, session data, rate limiting counters, and application state can live in one real-time system with a memory-first architecture and [sub-millisecond latency](https://redis.io/docs/latest/develop/get-started/data-store/) for many caching and real-time operations. For vector search, Redis delivers sub-100ms latency in production deployments—[Superlinked](https://redis.io/customers/superlinked/) sustained 100+ vector queries per second with 95th percentile latency at 30ms.
+  * **Vector search architecture:** Redis uses Hierarchical Navigable Small World ([HNSW](https://arxiv.org/abs/1603.09320)) indexing for datasets exceeding 1 million documents where performance and scalability take priority, plus FLAT indexing for exact nearest neighbor search when precision requirements override performance. Supports text, image, and video vector embeddings from any model provider.
+  * **Billion-scale performance:** With proper HNSW tuning, Redis achieves [95% precision](https://redis.io/blog/searching-1-billion-vectors-with-redis-8/) when searching 1 billion vectors at ~1.3s median latency. At smaller scales, [Superlinked](https://redis.io/customers/superlinked/) sustained 95th percentile latency at 30ms under heavy usage, and [Redis benchmarks](https://redis.io/blog/benchmarking-results-for-vector-databases/) show Redis outperforming tested alternatives at recall ≥98%. Performance varies by workload, so benchmark with your actual data.
+  * **Hybrid search:** The [FT.HYBRID command](https://redis.io/docs/latest/commands/ft.hybrid/) combines vector similarity with filtering on geographic, numeric, tag, or text data. [Redis 8.4](https://redis.io/blog/introducing-redis-8-4/) adds multiple ranking algorithms (Reciprocal Rank Fusion and linear combination) for score fusion.
+  * **Semantic caching:** [Redis LangCache](https://redis.io/langcache/) (managed service, currently in preview) stores large language model (LLM) responses and serves cached results for semantically similar queries. You trade an embedding lookup plus similarity search for avoiding much slower LLM inference calls. Redis reports [up to 70% savings](https://redis.io/blog/langcache-public-preview/) in high-traffic applications; actual savings depend on query redundancy patterns. For open source, [RedisVL's SemanticCache](https://redis.io/docs/latest/develop/ai/langcache/) provides similar capabilities with more configuration control.
+  * **Deployment options:** Redis Cloud offers fully managed infrastructure with no Kubernetes expertise required. Redis Software provides self-managed deployment with enterprise-grade compliance. Redis Open Source is free with no orchestration needed.
+
+
+Redis fits production AI apps that need vector search alongside operational data, particularly teams wanting to consolidate infrastructure rather than managing separate systems for vectors, caching, and operational workloads.
+### **Milvus**
+Milvus is a cloud-native distributed vector database built for horizontal scaling across multiple nodes. Version 2.0 introduced a microservices architecture targeting large enterprises with massive vector workloads. It's Apache 2.0 licensed.
+The tradeoff is operational complexity. Milvus Distributed is commonly deployed on Kubernetes for production at scale, though Milvus Standalone on a single machine is available for workloads that don't require distributed infrastructure. Organizations already running Kubernetes may find the distributed mode straightforward; teams without that expertise face a steeper learning curve.
+Redis also supports large-scale vector search, with broader deployment options, including fully managed Redis Cloud for teams who prefer not to manage infrastructure. Redis also handles caching and operational data alongside vectors, which can reduce the total number of systems in your stack.
+### **Weaviate**
+Weaviate combines vector similarity with keyword search through hybrid search capabilities, using HNSW indexing. It offers multiple API options: REST, GraphQL, and gRPC, with GraphQL and gRPC commonly used for queries. The GraphQL-based approach works for teams already comfortable with that pattern, though it may introduce a learning curve for developers who aren't.
+Redis provides the same hybrid search capabilities through the FT.HYBRID command, combining vector similarity with filtering on geographic, numeric, tag, or text data. The difference: Redis Query Engine uses familiar Redis command patterns rather than GraphQL, and Redis handles caching and operational data alongside vectors in one platform rather than requiring separate systems.
+### **Qdrant**
+Built in Rust, Qdrant emphasizes memory safety with filtering capabilities for metadata-heavy queries. Query latency varies by dataset size, dimensionality, and filtering complexity, and [Qdrant's benchmarks](https://qdrant.tech/benchmarks/) show results depend heavily on your specific workload. The filtering-optimized architecture handles complex metadata queries, though latency can vary depending on filter complexity and dataset characteristics.
+Redis delivers sub-100ms latency in production deployments—[Superlinked](https://redis.io/customers/superlinked/) achieved 95th percentile latency at 30ms under heavy usage—with support for filtering on geographic, numeric, tag, or text data.
+### **Chroma**
+Chroma prioritizes simplicity and developer experience, particularly for Python workflows. It's popular for rapid prototyping and works well for local development, especially in early-stage projects. Chroma can be deployed beyond local setups, but teams should evaluate high availability, distributed scaling, and operational requirements for their specific workload.
+If you want a unified cache + operational store + vector search layer, Redis reduces system count while scaling from prototype to production.
+### **pgvector (PostgreSQL Extension)**
+pgvector adds vector search capabilities to existing PostgreSQL deployments, keeping everything in one system for teams already running PostgreSQL. Performance has improved with recent versions: [pgvector 0.8.0](https://aws.amazon.com/blogs/database/supercharging-vector-search-performance-and-relevance-with-pgvector-0-8-0-on-amazon-aurora-postgresql/) delivers up to 5.7x improvement in query performance for specific patterns. In AWS benchmarks on a 10 million product dataset, filtered query latency dropped from 120ms to 70ms. The tradeoff is that pgvector requires PostgreSQL tuning expertise for vector workloads and doesn't include caching capabilities.
+Redis reports sub-100ms latency in production deployments without the tuning overhead, handles billions of vectors, and includes caching and operational data in the same system, consolidating infrastructure rather than extending PostgreSQL with vector-specific configuration.
+### **Faiss (Meta AI Research)**
+[Faiss](https://engineering.fb.com/2017/03/29/data-infrastructure/faiss-a-library-for-efficient-similarity-search/) is a C++ library for efficient similarity search and clustering of dense vectors. It's explicitly designed as a library, not a database. That means you get algorithms, not infrastructure.
+Teams adopting Faiss must build persistence, backup and recovery, replication, and monitoring on their own. These are infrastructure components that purpose-built vector databases provide natively. For research environments or teams with strong C++ engineering resources who want maximum control over implementation details, that tradeoff can make sense.
+For production deployments, Redis provides these database features with vector search built in. You get multiple [persistence options](https://redis.io/docs/latest/operate/oss_and_stack/management/persistence/) (Redis Database snapshots and Append-Only File logging), automated failover with [Redis Sentinel](https://redis.io/docs/latest/operate/oss_and_stack/management/sentinel/), and operational tools like [Redis Insight](https://redis.io/insight/), without building database infrastructure around an algorithm library.
+## **What to consider when choosing**
+The technical specs matter, but production decisions come down to a few practical questions.
+### **How many systems do you want to manage?**
+Specialized vector databases do one thing well, but production AI apps need more than vector search. You'll typically need caching for performance, an operational database for application state, and the vector store itself. That's three systems to deploy, monitor, secure, and keep in sync.
+Unified platforms like Redis handle all three in one system. Whether that tradeoff makes sense depends on your team's capacity for operational overhead and how much you value architectural simplicity.
+### **What's your LLM cost situation?**
+If you're running LLM workloads at scale, inference costs add up fast. Semantic caching, which stores LLM responses and serves cached results for semantically similar queries, can reduce those costs significantly. Redis reports [up to 70% LLM cost savings](https://redis.io/langcache/) in high-traffic applications with Redis LangCache, though actual savings depend on your query redundancy and workload patterns.
+Most vector databases don't offer semantic caching natively, so you'd need to build it yourself or add another tool.
+### **What deployment expertise does your team have?**
+Some vector databases require Kubernetes for production deployment. If your team already runs Kubernetes at scale, that's not a barrier. If they don't, you're looking at weeks or months of learning curve before you can go live.
+Redis offers three paths: fully managed cloud (zero infrastructure expertise needed), self-managed enterprise deployment (for compliance requirements), and open source (for teams who want full control). The flexibility means you're not forced into a deployment model that doesn't fit your team.
+## **Choosing the right open source vector database**
+Each vector database in this comparison solves a specific problem. Milvus handles massive distributed workloads if you have Kubernetes expertise (or use standalone mode for simpler deployments). Qdrant delivers strong filtering with competitive latency. pgvector keeps everything in PostgreSQL and now handles tens of millions of vectors effectively. Chroma gets you prototyping fast.
+The bigger question is whether you want a specialized vector store or a unified platform. Specialized tools do one thing well but add operational complexity; you'll need separate systems for caching, session management, and operational data. A unified approach puts vectors alongside everything else your AI app needs.
+Redis takes the unified path: sub-100ms vector search in production deployments plus caching, operational data structures, and semantic caching in one system. That architectural consolidation often matters more than marginal differences in pure vector search benchmarks. You get low latency without Kubernetes complexity, semantic caching that [cuts LLM costs](https://redis.io/langcache/) by up to 70% in high-traffic applications, and one platform for vectors, caching, and operational data.
+[Try Redis free](https://redis.io/try-free/) to test vector search performance with your actual embeddings, or [talk to our team](https://redis.io/meeting/) about your AI infrastructure needs.
+Sections
+[What makes a vector database production-ready](https://redis.io/blog/best-open-source-vector-databases-comparison/#What_makes_a_vector_database_productionready)
+[The top open source vector databases & comparison](https://redis.io/blog/best-open-source-vector-databases-comparison/#The_top_open_source_vector_databases_and_comparison)
+[Redis](https://redis.io/blog/best-open-source-vector-databases-comparison/#Redis)[Milvus](https://redis.io/blog/best-open-source-vector-databases-comparison/#Milvus)[Weaviate](https://redis.io/blog/best-open-source-vector-databases-comparison/#Weaviate)[Qdrant](https://redis.io/blog/best-open-source-vector-databases-comparison/#Qdrant)[Chroma](https://redis.io/blog/best-open-source-vector-databases-comparison/#Chroma)[pgvector (PostgreSQL Extension)](https://redis.io/blog/best-open-source-vector-databases-comparison/#pgvector_PostgreSQL_Extension)[Faiss (Meta AI Research)](https://redis.io/blog/best-open-source-vector-databases-comparison/#Faiss_Meta_AI_Research)
+[What to consider when choosing](https://redis.io/blog/best-open-source-vector-databases-comparison/#What_to_consider_when_choosing)
+[How many systems do you want to manage?](https://redis.io/blog/best-open-source-vector-databases-comparison/#How_many_systems_do_you_want_to_manage)[What's your LLM cost situation?](https://redis.io/blog/best-open-source-vector-databases-comparison/#Whats_your_LLM_cost_situation)[What deployment expertise does your team have?](https://redis.io/blog/best-open-source-vector-databases-comparison/#What_deployment_expertise_does_your_team_have)
+[Choosing the right open source vector database](https://redis.io/blog/best-open-source-vector-databases-comparison/#Choosing_the_right_open_source_vector_database)
+[View as Markdown](https://redis.io/blog/best-open-source-vector-databases-comparison.md)
+Share
+[](https://www.linkedin.com/sharing/share-offsite/?url=https://redis.io/blog/best-open-source-vector-databases-comparison/)[](https://www.facebook.com/sharer/sharer.php?u=https://redis.io/blog/best-open-source-vector-databases-comparison/)[](https://twitter.com/intent/tweet?url=https://redis.io/blog/best-open-source-vector-databases-comparison/)
+## Get started with Redis today
+Speak to a Redis expert and learn more about enterprise-grade Redis today.
+[Try for free](https://redis.io/try-free/)[Talk to sales](https://redis.io/meeting/)
+[](https://redis.io/)
+[](https://github.com/redis/redis/ "githubCircledFilled")[](https://www.facebook.com/Redisinc "facebookCircledFilled")[](https://www.youtube.com/c/redisinc "youtubeCircledFilled")[](https://www.linkedin.com/company/redisinc/ "linkedinCircledFilled")[](https://www.instagram.com/redisinc/ "instagramCircledFilled")[](https://x.com/Redisinc "xCircledFilled")
+[Trust](https://trust.redis.io/)[Privacy](https://redis.io/legal/privacy-policy/)[Terms of use](https://redis.io/legal/redis-website-terms-of-use/)[Legal notices](https://redis.io/legal/)
+English Español Français Deutsch 한국어 Italiano Português
+Use cases
+[Vector database](https://redis.io/solutions/vector-database/)[Feature Form](https://redis.io/feature-form/)[Semantic cache](https://redis.io/redis-for-ai/)[Caching](https://redis.io/solutions/caching/)[NoSQL database](https://redis.io/nosql/what-is-nosql/)[Leaderboards](https://redis.io/solutions/leaderboards/)[Data deduplication](https://redis.io/solutions/deduplication/)[Messaging](https://redis.io/solutions/messaging/)[Authentication token storage](https://redis.io/solutions/authentication-token-storage/)[Fast data ingest](https://redis.io/solutions/fast-data-ingest/)[Redis Search](https://redis.io/query-engine/)[All solutions](https://redis.io/solutions/)
+Industries
+[Financial Services](https://redis.io/industries/financial-services/)[Gaming](https://redis.io/industries/gaming/)[Healthcare](https://redis.io/industries/healthcare/)[Retail](https://redis.io/industries/retail/)[Telco](https://redis.io/industries/telco/)[All industries](https://redis.io/industries/)
+Compare
+[Redis vs. ElastiCache](https://redis.io/compare/elasticache/)[Redis vs. Memcached](https://redis.io/compare/memcached/)[Redis vs. Memorystore](https://redis.io/compare/memorystore/)[Redis vs. Redis Open Source](https://redis.io/compare/open-source/)
+Company
+[Mission & values](https://redis.io/company/)[Careers](https://redis.io/company/careers/)[News](https://redis.io/company/news/)
+Connect
+[Community](https://redis.io/community/)[Events & Webinars](https://redis.io/events/)
+Partners
+[Amazon Web Services](https://redis.io/cloud-partners/aws/)[Google Cloud](https://redis.io/cloud-partners/google/)[Azure](https://redis.io/cloud-partners/azure/)[All partners](https://redis.io/partners/)
+Support
+[Professional Services](https://redis.io/services/professional-services/)[Support](https://redis.io/support/)[Redis for Agents Documentation](https://redis.io/agents/)
+English Español Français Deutsch 한국어 Italiano Português
+  * [Trust](https://trust.redis.io/)
+  * [Privacy](https://redis.io/legal/privacy-policy/)
+  * [Terms of use](https://redis.io/legal/redis-website-terms-of-use/)
+  * [Legal notices](https://redis.io/legal/)
+
+
+This site uses cookies and related technologies, as described in our [privacy policy](https://redis.com/legal/privacy-policy/), for purposes that may include site operation, analytics, enhanced user experience, or advertising. You may choose to consent to our use of these technologies, or manage your own preferences.
+Manage Settings Accept

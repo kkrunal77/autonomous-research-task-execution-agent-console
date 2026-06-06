@@ -1,0 +1,125 @@
+
+======================================================================
+  🤖  Autonomous Research Agent  |  Assignment 7
+======================================================================
+  Query  : Find best MCP servers for browser automation and explain installation
+  Max iterations: 8
+
+🔍  [PERCEPTION]
+     Analysing query intent…
+
+  →  [Intent]
+     Find best MCP servers for browser automation and explain installation
+
+  →  [Task type]
+     web_research
+
+  →  [Entities]
+     none
+
+  →  [Requires tools]
+     True
+
+  →  [Requires memory]
+     False
+
+======================================================================
+  ⚡  ITERATION 1 / 8
+======================================================================
+
+🧠  [DECISION]
+     Choosing next action…
+
+  →  [Action]
+     search_web
+
+  →  [Reasoning]
+     Gateway error — defaulting to web search.
+
+🌐  [ACTION: web_search]
+     Find best MCP servers for browser automation and explain installation
+
+  →  [Result]
+     Got 1486 chars of search results
+
+======================================================================
+  ⚡  ITERATION 2 / 8
+======================================================================
+
+🧠  [DECISION]
+     Choosing next action…
+
+  →  [Action]
+     final_answer
+
+  →  [Reasoning]
+     Gateway error — compiling from accumulated context.
+
+✅  [FINAL ANSWER]
+
+[Search: Find best MCP servers for browser automation and explain installation]
+**The 8 Best MCP Servers for Developers in 2026 - data4ai.com**
+https://data4ai.com/blog/tool-comparisons/best-mcp-servers-for-developers/
+Best MCP Servers for Developers in 2026 This guide ranks the best MCP servers for developers based on real workflow value, setup friction, reliability, and action breadth. Compare top options for code, web access, databases, browser automation, deployment, and security.
+
+**The 5 best MCP servers for browser automation in 2026**
+https://pagebolt.dev/blog/best-mcp-browser-automation-servers
+The 5 best MCP servers for browser automation in 2026 Compare Playwright MCP, Puppeteer MCP, PageBolt, browser-use, and Stagehand. Pros, cons, and when to use each.
+
+**Top 5 AI MCP servers for Browser Automation | explainx.ai Blog**
+https://explainx.ai/blog/top-5-ai-mcp-servers-for-browser-automation
+A live ExplainX ranking of the top 5 ai mcp servers for Browser Automation, generated from current directory data and refreshed from the database.
+
+**Best MCP servers in 2026: top picks by category**
+https://openclawmcp.com/blog/best-mcp-servers-2026
+The best MCP servers in 2026 ranked by category. Developer tools, databases, web search, productivity, browser automation, and monitoring picks for OpenClaw and Claude.
+
+**Top Browser Automation MCP Servers - Ranked by GitHub Stars**
+https://awesomeclaude.ai/mcp/browser-automation
+Discover the best Browser Automation MCP servers for Claude and AI assistants. Browse 28 servers ranked by GitHub stars.
+
+======================================================================
+  🏁  DONE  |  2 iterations  |  81.7s
+======================================================================
+
+======================================================================
+📋  STRUCTURED RESULT
+======================================================================
+Query          : Find best MCP servers for browser automation and explain installation
+Iterations used: 2
+Sources        : 5 URL(s)
+  - https://data4ai.com/blog/tool-comparisons/best-mcp-servers-for-developers/
+  - https://pagebolt.dev/blog/best-mcp-browser-automation-servers
+  - https://explainx.ai/blog/top-5-ai-mcp-servers-for-browser-automation
+
+warning: The `tool.uv.dev-dependencies` field (used in `pyproject.toml`) is deprecated and will be removed in a future release; use `dependency-groups.dev` instead
+[Perception] Attempt 1 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503. Retrying...
+[Perception] Attempt 2 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503. Retrying...
+[Perception] Attempt 3 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503. Retrying...
+[Perception] Attempt 4 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503. Retrying...
+[Perception] fallback due to: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
+[Decision] Attempt 1 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (6s left)'}]. last_error: None"}. Retrying...
+[Decision] Attempt 2 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (3s left)'}]. last_error: None"}. Retrying...
+[Decision] Attempt 3 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'failed: gemini HTTP 429: {\\n  \"error\": {\\n    \"code\": 429,\\n    \"message\": \"You exceeded your current quota, pl → backoff 60s (RPM quota burned)'}]. last_error: gemini HTTP 429: {\n  \"error\": {\n    \"code\": 429,\n    \"message\": \"You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20,"}. Retrying...
+[Decision] Attempt 4 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (52s left)'}]. last_error: None"}. Retrying...
+[Decision] error (all attempts failed): Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
+[Decision] Attempt 1 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (38s left)'}]. last_error: None"}. Retrying...
+[Decision] Attempt 2 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (35s left)'}]. last_error: None"}. Retrying...
+[Decision] Attempt 3 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (30s left)'}]. last_error: None"}. Retrying...
+[Decision] Attempt 4 failed: Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503 | Response: {"detail":"all providers unavailable. attempts: [{'provider': 'gemini', 'reason': 'backoff: RPM quota burned (23s left)'}]. last_error: None"}. Retrying...
+[Decision] error (all attempts failed): Server error '503 Service Unavailable' for url 'http://localhost:8101/v1/chat'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/503
