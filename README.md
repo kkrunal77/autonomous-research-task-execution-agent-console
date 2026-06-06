@@ -164,7 +164,7 @@ We designed 5 specific queries against this local corpus. Each query retrieves t
 
 All traces generated during the end-to-end benchmark execution are stored under the [traces/](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces) directory:
 
-### 8 Base Traces:
+### 10 Base Traces:
 - [Query A Trace (Web Research)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_a.txt)
 - [Query B Trace (Multi-Hop Reasoning)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_b.txt)
 - [Query C (Save) Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_c_save.txt)
@@ -174,6 +174,7 @@ All traces generated during the end-to-end benchmark execution are stored under 
 - [Query F Trace (RAG Semantic - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_f_with_corpus.txt)
 - [Query G Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_g_with_corpus.txt)
 - [Query H Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_h_with_corpus.txt)
+- [Query I Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_i_with_corpus.txt)
 
 ### 5 Custom RAG No-Corpus Comparisons:
 - **Query E (Kyoto Carbon Scrubbing)**:
