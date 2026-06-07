@@ -34,18 +34,18 @@ The project is structured as a modular, stateful agentic system composed of thre
 
 ### 1. The Four-Layer Cognitive Loop (`agent7.py`)
 The agent runs an iterative execution loop matching the Human-in-the-Loop agent paradigm, converging on a final answer within a hard cap of 8 iterations:
-- **Perception Layer ([`perception.py`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/perception.py))**: Classifies query intent, extracts entities, and detects whether tools or persistent memory are needed.
-- **Decision Layer ([`decision.py`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/decision.py))**: A convergent state machine (Brain) that decides the next best action (`search_web`, `crawl_page`, `retrieve_context`, `recall_memory`, `save_memory`, or `final_answer`) based on Pydantic v2 validation contracts.
-- **Action Layer ([`action.py`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/action.py))**: Connects to the local MCP server over stdio to execute tools and returns unified, structured outputs.
-- **Memory Layer ([`memory.py`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/memory.py))**: Manages persistent JSON memory state (`state/memory.json`) and historical steps (`state/history.json`).
+- **Perception Layer ([`perception.py`](perception.py))**: Classifies query intent, extracts entities, and detects whether tools or persistent memory are needed.
+- **Decision Layer ([`decision.py`](decision.py))**: A convergent state machine (Brain) that decides the next best action (`search_web`, `crawl_page`, `retrieve_context`, `recall_memory`, `save_memory`, or `final_answer`) based on Pydantic v2 validation contracts.
+- **Action Layer ([`action.py`](action.py))**: Connects to the local MCP server over stdio to execute tools and returns unified, structured outputs.
+- **Memory Layer ([`memory.py`](memory.py))**: Manages persistent JSON memory state (`state/memory.json`) and historical steps (`state/history.json`).
 
-### 2. Unified LLM Gateway ([`llm_gatewayV3/`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/llm_gatewayV3))
+### 2. Unified LLM Gateway ([`llm_gatewayV3/`](llm_gatewayV3))
 A FastAPI service running on **port 8101** that acts as the orchestration layer for all LLM calls:
 - **2-Tier Routing**: Automatically classifies inputs into `TINY`, `LARGE`, or `HUGE` tiers using a lightweight router pool and selects the optimal worker provider (Ollama, Gemini, NVIDIA, Groq, Cerebras, etc.).
 - **Rate-Limit Queuing & Self-Healing**: Automatically catches rate limits (such as Gemini 429 quota exhaustion) and blocks incoming requests to wait out the cooldown/sliding-window reset period, ensuring the agent client never crashes due to transient rate limits.
 - **Structured Validation**: Validates output conformity against JSON schemas with automatic single-shot retry formatting.
 
-### 3. MCP Tool Server ([`mcp_server.py`](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/mcp_server.py))
+### 3. MCP Tool Server ([`mcp_server.py`](mcp_server.py))
 Exposes the agent's real-world tools over standard Model Context Protocol (stdio transport):
 - **Web & Crawler Tools**: `web_search` (primary Tavily with DuckDuckGo fallback) and `fetch_url` (Crawl4AI scraping).
 - **RAG & Filesystem**: Local vector context search (`retrieve_context`), document indexing (`index_document`), and safe sandboxed file I/O operations restricted to `./sandbox/`.
@@ -116,15 +116,15 @@ The agent executes all queries successfully under the hard limit of **8 iteratio
 
 ## 🗂️ RAG Application & Local Document Corpus
 
-To fulfill the requirements of a real RAG application, we have integrated a local semantic search database running over a corpus of **55 documents** stored in the [corpus/](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus) directory.
+To fulfill the requirements of a real RAG application, we have integrated a local semantic search database running over a corpus of **55 documents** stored in the [corpus/](corpus) directory.
 
 ### 📋 Corpus Manifest
 - **Specialized Knowledge Files (5 files)**:
-  - [doc_01_aether_9.txt](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus/doc_01_aether_9.txt): Fictional atmospheric carbon scrubbing system (Aether-9) in New Kyoto.
-  - [doc_02_whisper_net.txt](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus/doc_02_whisper_net.txt): Fictional subterranean acoustic communication framework (Whisper-Net) for military silos.
-  - [doc_03_aegis_power.txt](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus/doc_03_aegis_power.txt): Fictional system specifications for Aegis shielding deuterium fusion power source.
-  - [doc_04_chronos_personnel.txt](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus/doc_04_chronos_personnel.txt): Dr. Evelyn Thorne's profile as lead scientist and director of Chronos temporal engine.
-  - [doc_05_zephyr_payload.txt](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/corpus/doc_05_zephyr_payload.txt): Zephyr heavy lifter drone cargo specs (12 metric tons capacity).
+  - [doc_01_aether_9.txt](corpus/doc_01_aether_9.txt): Fictional atmospheric carbon scrubbing system (Aether-9) in New Kyoto.
+  - [doc_02_whisper_net.txt](corpus/doc_02_whisper_net.txt): Fictional subterranean acoustic communication framework (Whisper-Net) for military silos.
+  - [doc_03_aegis_power.txt](corpus/doc_03_aegis_power.txt): Fictional system specifications for Aegis shielding deuterium fusion power source.
+  - [doc_04_chronos_personnel.txt](corpus/doc_04_chronos_personnel.txt): Dr. Evelyn Thorne's profile as lead scientist and director of Chronos temporal engine.
+  - [doc_05_zephyr_payload.txt](corpus/doc_05_zephyr_payload.txt): Zephyr heavy lifter drone cargo specs (12 metric tons capacity).
 - **Fictional System Logs (50 files)**:
   - `doc_06_system_log.txt` through `doc_55_system_log.txt`: Outlining mock maintenance schedules, temperatures, power draws, and operational technician groups to meet the 50+ document constraint.
 
@@ -162,28 +162,26 @@ We designed 5 specific queries against this local corpus. Each query retrieves t
 
 ## 📜 Complete Benchmark Traces & No-Corpus Comparisons
 
-All traces generated during the end-to-end benchmark execution are stored under the [traces/](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces) directory:
+All traces generated during the end-to-end benchmark execution are stored under the [traces/](traces) directory:
 
-### 10 Base Traces:
-- [Query A Trace (Web Research)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_a.txt)
-- [Query B Trace (Multi-Hop Reasoning)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_b.txt)
-- [Query C (Save) Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_c_save.txt)
-- [Query C (Recall) Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_c_recall.txt)
-- [Query D Trace (Tool Chaining)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_d.txt)
-- [Query E Trace (RAG Semantic - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_e_with_corpus.txt)
-- [Query F Trace (RAG Semantic - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_f_with_corpus.txt)
-- [Query G Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_g_with_corpus.txt)
-- [Query H Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_h_with_corpus.txt)
-- [Query I Trace (RAG Direct - With Corpus)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_i_with_corpus.txt)
+### 8 Base Traces:
+- [Query A Trace (Web Research)](traces/query_a.txt)
+- [Query B Trace (Multi-Hop Reasoning)](traces/query_b.txt)
+- [Query C (Save) Trace](traces/query_c_save.txt)
+- [Query C (Recall) Trace](traces/query_c_recall.txt)
+- [Query D Trace (Tool Chaining)](traces/query_d.txt)
+- [Query E Trace (RAG Semantic - With Corpus)](traces/query_e_with_corpus.txt)
+- [Query F Trace (RAG Semantic - With Corpus)](traces/query_f_with_corpus.txt)
+- [Query G Trace (RAG Direct - With Corpus)](traces/query_g_with_corpus.txt)
 
 ### 5 Custom RAG No-Corpus Comparisons:
 - **Query E (Kyoto Carbon Scrubbing)**:
-  - [With Corpus Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_e_with_corpus.txt) vs [No Corpus Trace (Fails)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_e_no_corpus.txt)
+  - [With Corpus Trace](traces/query_e_with_corpus.txt) vs [No Corpus Trace (Fails)](traces/query_e_no_corpus.txt)
 - **Query F (Underground Silos acoustic)**:
-  - [With Corpus Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_f_with_corpus.txt) vs [No Corpus Trace (Fails)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_f_no_corpus.txt)
+  - [With Corpus Trace](traces/query_f_with_corpus.txt) vs [No Corpus Trace (Fails)](traces/query_f_no_corpus.txt)
 - **Query G (Aegis Shield deuterium)**:
-  - [With Corpus Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_g_with_corpus.txt) vs [No Corpus Trace (Fails)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_g_no_corpus.txt)
+  - [With Corpus Trace](traces/query_g_with_corpus.txt) vs [No Corpus Trace (Fails)](traces/query_g_no_corpus.txt)
 - **Query H (Chronos Lead Scientist)**:
-  - [With Corpus Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_h_with_corpus.txt) vs [No Corpus Trace (Fails)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_h_no_corpus.txt)
+  - [With Corpus Trace](traces/query_h_with_corpus.txt) vs [No Corpus Trace (Fails)](traces/query_h_no_corpus.txt)
 - **Query I (Zephyr Drone Payload)**:
-  - [With Corpus Trace](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_i_with_corpus.txt) vs [No Corpus Trace (Fails)](file:///Users/mahipal/Desktop/My_Plugins/assignment-7/traces/query_i_no_corpus.txt)
+  - [With Corpus Trace](traces/query_i_with_corpus.txt) vs [No Corpus Trace (Fails)](traces/query_i_no_corpus.txt)
